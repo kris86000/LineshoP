@@ -34,6 +34,14 @@ class Articles
     #[ORM\JoinColumn(nullable: false)]
     private ?categories $categories = null;
 
+    #[ORM\OneToMany(mappedBy: 'article', targetEntity: Orderslines::class)]
+    private Collection $orderslines;
+
+    public function __construct()
+    {
+        $this->orderslines = new ArrayCollection();
+    }
+
 
     public function getId(): ?int
     {
@@ -108,6 +116,36 @@ class Articles
     public function setCategories(?categories $categories): self
     {
         $this->categories = $categories;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Orderslines>
+     */
+    public function getOrderslines(): Collection
+    {
+        return $this->orderslines;
+    }
+
+    public function addOrdersline(Orderslines $ordersline): self
+    {
+        if (!$this->orderslines->contains($ordersline)) {
+            $this->orderslines->add($ordersline);
+            $ordersline->setArticle($this);
+        }
+
+        return $this;
+    }
+
+    public function removeOrdersline(Orderslines $ordersline): self
+    {
+        if ($this->orderslines->removeElement($ordersline)) {
+            // set the owning side to null (unless already changed)
+            if ($ordersline->getArticle() === $this) {
+                $ordersline->setArticle(null);
+            }
+        }
 
         return $this;
     }
