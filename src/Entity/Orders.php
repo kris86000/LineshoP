@@ -28,6 +28,10 @@ class Orders
     #[ORM\OneToMany(mappedBy: 'orders', targetEntity: Orderslines::class)]
     private Collection $orderslines;
 
+    #[ORM\ManyToOne(inversedBy: 'orders')]
+    #[ORM\JoinColumn(nullable: false)]
+    private ?user $user = null;
+
     public function __construct()
     {
         $this->orderslines = new ArrayCollection();
@@ -100,6 +104,18 @@ class Orders
                 $ordersline->setOrders(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getUser(): ?user
+    {
+        return $this->user;
+    }
+
+    public function setUser(?user $user): self
+    {
+        $this->user = $user;
 
         return $this;
     }
