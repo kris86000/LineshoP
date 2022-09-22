@@ -32,6 +32,24 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\OneToMany(mappedBy: 'user', targetEntity: Orders::class)]
     private Collection $orders;
 
+    #[ORM\Column(length: 20, nullable: true)]
+    private ?string $pseudo = null;
+
+    #[ORM\Column(length: 20, nullable: true)]
+    private ?string $name_user = null;
+
+    #[ORM\Column(length: 20, nullable: true)]
+    private ?string $firstname = null;
+
+    #[ORM\Column(length: 40, nullable: true)]
+    private ?string $address = null;
+
+    #[ORM\Column(nullable: true)]
+    private ?int $postal_code = null;
+
+    #[ORM\Column(length: 20, nullable: true)]
+    private ?string $city = null;
+
     public function __construct()
     {
         $this->orders = new ArrayCollection();
@@ -133,6 +151,78 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
                 $order->setUser(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getPseudo(): ?string
+    {
+        return $this->pseudo;
+    }
+
+    public function setPseudo(?string $pseudo): self
+    {
+        $this->pseudo = $pseudo;
+
+        return $this;
+    }
+
+    public function getNameUser(): ?string
+    {
+        return $this->name_user;
+    }
+
+    public function setNameUser(?string $name_user): self
+    {
+        $this->name_user = $name_user;
+
+        return $this;
+    }
+
+    public function getFirstname(): ?string
+    {
+        return $this->firstname;
+    }
+
+    public function setFirstname(?string $firstname): self
+    {
+        $this->firstname = $firstname;
+
+        return $this;
+    }
+
+    public function getAddress(): ?string
+    {
+        return $this->address;
+    }
+
+    public function setAddress(?string $address): self
+    {
+        $this->address = $address;
+
+        return $this;
+    }
+
+    public function getPostalCode(): ?int
+    {
+        return $this->postal_code;
+    }
+
+    public function setPostalCode(?int $postal_code): self
+    {
+        $this->postal_code = $postal_code;
+
+        return $this;
+    }
+
+    public function getCity(): ?string
+    {
+        return $this->city;
+    }
+
+    public function setCity(?string $city): self
+    {
+        $this->city = $city;
 
         return $this;
     }
