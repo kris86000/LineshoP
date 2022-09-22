@@ -1,16 +1,16 @@
 # WEB-FILMS
 
 TODO :
-- [x] Class Acteur, Film ,Role, User => Kris 
-- [x] ClassDAO FilmsDAO et UsersDAO => Kris
-- [x] UserDAO->getUser("email") qui renvoye null si pas d'user trouvé
-- [x] Controller afficheFilms.php => Darko/Kris/Guillaume
-- [x] Controller header, footer, erreur.php => darko
-- [x] Vue header, footer, erreur.twig (avec paramètre) => darko
-- [x] Vue affichageFilms.twig => Darko/Kris/Guillaume
-- [x] Controller connexion.php/vue connexion.twig + erreur 
-  $_SESSION["email"] + $_SESSION["mdp"] => Guillaume
-- [x] Faire le "remember me" en $_SESSION => Guillaume
-- [x] Controller cree_compte + vue + erreur => Guillaume 
-- [x] modifier le recherche avec lower =>Darko/Kris/Guillaume
+- [x] make Entity => Kris,Darko
+- [x] make entity User, Config => Darko
+- [ ] make Controller header, footer, ?erreur.php? => Guillaume
+- [ ] Modifier html du twig header, footer, ?erreur.twig? => Guillaume
+- [ ] make controller mainPage => Darko
+- [ ] Modifier html du twig mainPage => Darko
+- [ ] Controller connexion connexion.twig + erreur => Kris
+  $_SESSION["email"] + $_SESSION["mdp"] +$_SESSION["panier[]"] => Kris
+- [ ] Faire le "remember me" en $_SESSION
+- [ ] Controller cree_compte + vue + erreur
+- [ ] Recherche faire 3 bouton $_POST["filtre"]
+- [ ] controller listePanier + twig
 - [ ] Penser à commenter le code =>Darko/Kris/Guillaume
