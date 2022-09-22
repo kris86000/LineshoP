@@ -18,38 +18,46 @@
 			padding: 2px 6px;
 		}
 	</style>
+	
+		<div class="example-wrapper">
+			<div class="container">
+				<div class="row">
+					<div class="col-5 shadow-lg p-3 mt-3 mb-5 bg-body rounded offset-3 text-center">
+						
+						
+						<h2>Créer votre compte</h2>
 
-	<div class="example-wrapper">
-		<h1>Veuillez créer un compte</h1>
+							<form action="" method="post">
 
-		<form action="boutique" method="POST">
+								<label for="nom">Nom Utilisateur :
+								</label><input class="" name="nom" type="text"><br>
 
-			<label for="nom">Nom Utilisateur :
-			</label><input class="" name="nom" type="text"><br>
+								<label for="prenom">Prenom Utilisateur :
+								</label><input class="" name="prenom" type="text"><br>
 
-			<label for="prenom">Prenom Utilisateur :
-			</label><input class="" name="prenom" type="text"><br>
+								<label for="pseudo">Votre Pseudo :
+								</label><input class="" name="pseudo" type="text"><br>
 
-			<label for="pseudo">Votre Pseudo :
-			</label><input class="" name="pseudo" type="text"><br>
+								<label for="email">Votre Email :
+								</label><input class="" name="email" type="email"><br>
 
-			<label for="email">Votre Email :
-			</label><input class="" name="email" type="email"><br>
+								<label for="mdp">Votre Mot De Passe :
+								</label><input class="" name="mdp" type="password"><br>
 
-			<label for="mdp">Votre Mot De Passe :
-			</label><input class="" name="mdp" type="password"><br>
+								<label for="adresse">Votre Adresse :
+								</label><input class="" name="adresse" type="text"><br>
 
-			<label for="adresse">Votre Adresse :
-			</label><input class="" name="adresse" type="text"><br>
+								<label for="codePostal">Code Postal :
+								</label><input class="" name="codePostal" type="number"><br>
 
-			<label for="codePostal">Code Postal :
-			</label><input class="" name="codePostal" type="number"><br>
+									<div class="col-6 offset-3 mt-3">
+    									<button type="submit" class="btn btn-primary">Envoyer</button>
+  									</div>
 
-			<button type="submit" class="" name="btnValid">Envoyer</button>
-
-
-		</form>
-
-	</div>
+							</form>
+					</div>
+				</div>
+			</div>
+		</div>	
 
 {% endblock %}
