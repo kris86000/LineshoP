@@ -18,7 +18,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Base de données : `boutique`
+-- Base de données : `lineshop`
 --
 
 -- --------------------------------------------------------
@@ -93,7 +93,7 @@ INSERT INTO `orders` (`id`, `date_order`, `amount`, `status` ,`user_id`) VALUES
 -- Déchargement des données de la table `orderslines`
 --
 
-INSERT INTO `orderslines` (`id`, `order_id`,`quantity`,`article_id`) VALUES
+INSERT INTO `orderslines` (`id`, `orders_id`,`quantity`,`article_id`) VALUES
 (28, 23, 1, 1);
 
 -- --------------------------------------------------------
