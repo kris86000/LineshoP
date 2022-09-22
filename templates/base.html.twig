@@ -19,6 +19,55 @@
 		{% endblock %}
 	</head>
 	<body>
+	{% block header %}
+	<div class="container-fluid">
+     {# partie 1 du header #}
+    <div class="row">
+	    <nav class=" col navbar navbar-expand-lg bg-dark">
+      	  <div class="col-8">
+           <div class="row">
+	           <p class="col"><a class="navbar-brand col" style="color:white;" href="boutique">LineshoP</a></p>
+		         <p class="col d-flex align-items-center" style="color:white;"><i>The best online store, for real.</i></p>
+            </div>
+           </div>
+          <div class="col-1">
+              <button class="btn btn-outline-success col" type="submit"><svg  xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><!--! Font Awesome Pro 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2022 Fonticons, Inc. --><path d="M24 0C10.7 0 0 10.7 0 24S10.7 48 24 48H76.1l60.3 316.5c2.2 11.3 12.1 19.5 23.6 19.5H488c13.3 0 24-10.7 24-24s-10.7-24-24-24H179.9l-9.1-48h317c14.3 0 26.9-9.5 30.8-23.3l54-192C578.3 52.3 563 32 541.8 32H122l-2.4-12.5C117.4 8.2 107.5 0 96 0H24zM176 512c26.5 0 48-21.5 48-48s-21.5-48-48-48s-48 21.5-48 48s21.5 48 48 48zm336-48c0-26.5-21.5-48-48-48s-48 21.5-48 48s21.5 48 48 48s48-21.5 48-48z"/></svg></button>
+           </div>
+          <div class="col-3">
+           <div class="row text-center">
+                <p class="col" style="color:green;">ITEMS</p>
+                <p  class="col" style="color:green;">TOTAL</p>
+                </div>
+                  <div class="row text-center">
+                <p class="col" style="color:white;">0</p>
+                <p class="col" style="color:white;">0$</p>
+                </div>
+            </div>
+           </div>
+          </div>
+      </nav>
+    </div>
+    
+    {# partie 2 du header #}
+
+    <nav class="navbar d-flex justify-content-center" style="background-color: #343a55;">
+          <span class="text-center " style="color:white;" >Welcome $_SESSION you can <a href="" style="color:green;" >logout</a></span>
+    </nav>
+
+    {# partie 3 du header #}
+
+
+  <nav class="navbar navbar-expand-lg bg-light">
+    <div class="d-flex justify-content-start ">
+      <a style="color: black;" class="navbar-brand" href="boutique">All Categories</a>
+      <a style="color: black;" class="navbar-brand" href="consoles">Consoles</a>
+      <a style="color: black;" class="navbar-brand" href="jeux">Jeux</a>
+    </div>
+  </nav>
+
+</div>
+	
+	{% endblock %}
 		{% block body %}{% endblock %}
 		<script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
 		<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-Fy6S3B9q64WdZWQUiU+q4/2Lc9npb8tCaSX9FK7E8HnRr0Jz8D6OP9dO5Vg3Q9ct" crossorigin="anonymous"></script>
