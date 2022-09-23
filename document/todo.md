@@ -3,8 +3,7 @@
 TODO :
 - [x] make Entity => Kris,Darko
 - [x] make entity User, Config => Darko
-- [ ] make Controller header, footer, ?erreur.php? => Guillaume
-- [ ] Modifier html du twig header, footer, ?erreur.twig? => Guillaume
+- [ ] base.html faire header, footer => Darko
 - [ ] make controller mainPage => Darko
 - [ ] Modifier html du twig mainPage => Darko
 - [ ] Controller connexion connexion.twig + erreur => Kris
