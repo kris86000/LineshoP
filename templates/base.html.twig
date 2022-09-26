@@ -63,20 +63,20 @@
 {# partie 2 du header #}
 
 <nav class="navbar d-flex justify-content-center" style="background-color: #343a55;">
-		<span class="text-center" style="color:white;">Welcome  USER you can
+		{# <span class="text-center" style="color:white;">Welcome {{ app.session.name }} you can
 		<button class="btn btn-success"><a href="./login" style="color:white;">login</a></button>
 		<button class="btn btn-danger"><a href="./logout" style="color:white;">logout</a></button>
-		</span>
+		</span> #}
 
-{# {% if loggge %}
-		<span class="text-center" style="color:white;">Welcome  USER you can
-		<button class="btn btn-success"><a href="./login" style="color:white;">login</a></button>
-		</span>
-{% else %}
-		<span class="text-center" style="color:white;">Welcome  USER you can
+{% if app.user != null  %} 
+		<span class="text-center" style="color:white;">Welcome  {{ app.user.email }} you can
 		<button class="btn btn-danger"><a href="./logout" style="color:white;">logout</a></button>
 		</span>
-{% endif %}	 #}
+{% else %} 
+ 		<span class="text-center" style="color:white;"> Please sign in
+		<button class="btn btn-success"><a href="./login" style="color:white;">login</a></button>
+		</span>
+{% endif %}	 
 </nav>
 
 {# partie 3 du header #}
