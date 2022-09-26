@@ -13,3 +13,5 @@ TODO :
 - [ ] Recherche faire 3 bouton $_POST["filtre"]
 - [ ] controller listePanier + twig
 - [ ] Penser à commenter le code =>Darko/Kris/Guillaume
+
+vendor>symfony>error-handler>DebugClassLoader lignes 306-349 commenté

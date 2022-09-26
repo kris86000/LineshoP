@@ -34,7 +34,7 @@ class Articles
     #[ORM\JoinColumn(nullable: false)]
     private ?categories $categories = null;
 
-    #[ORM\OneToMany(mappedBy: 'article', targetEntity: Orderslines::class)]
+    #[ORM\OneToMany(mappedBy: 'articles', targetEntity: Orderslines::class)]
     private Collection $orderslines;
 
     public function __construct()
