@@ -1,58 +1,42 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello ConsolesController!{% endblock %}
+{% block title %}Hello ConsolesController!
+{% endblock %}
 
 {% block body %}
-<style>
-    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
-    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
-</style>
+	<style>
+		.example-wrapper {
+			margin: 1em auto;
+			max-width: 800px;
+			width: 95%;
+			font: 18px / 1.5 sans-serif;
+		}
+		.example-wrapper code {
+			background: #F5F5F5;
+			padding: 2px 6px;
+		}
+	</style>
 
 
 	<div class="container">
 
+		<div class="row row-cols-1 row-cols-md-3 g-4">
+			{% for console in allConsole %}
 
-		<div class="row row-cols-1 row-cols-md-2 g-4">
-  <div class="col-2">
-    <div class="card">
-      <img src="..." class="card-img-top" alt="...">
-      <div class="card-body">
-        <h5 class="card-title">Card title</h5>
-        <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-      </div>
-	  <button type="button" class="btn btn-success">+</button>
-    </div>
-  </div>
-  <div class="col-2">
-    <div class="card">
-      <img src="..." class="card-img-top" alt="...">
-      <div class="card-body">
-        <h5 class="card-title">Card title</h5>
-        <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-      </div>
-	  <button type="button" class="btn btn-success">+</button>
-    </div>
-  </div>
-  <div class="col-2">
-    <div class="card">
-      <img src="..." class="card-img-top" alt="...">
-      <div class="card-body">
-        <h5 class="card-title">Card title</h5>
-        <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content.</p>
-      </div>
-	  <button type="button" class="btn btn-success">+</button>
-    </div>
-  </div>
-  <div class="col-2">
-    <div class="card">
-      <img src="..." class="card-img-top" alt="...">
-      <div class="card-body">
-        <h5 class="card-title">Card title</h5>
-        <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-      </div>
-	  <button type="button" class="btn btn-success">+</button>
-    </div>
-  </div>
-  
-</div>
+				<div class="col-2">
+					<div class="card">
+						<img src={{console.image}} class="card-img-top" alt="...">
+						<div class="card-body">
+							<h5 class="card-title">{{console.nameArticle}}</h5>
+							<p class="card-text">{{console.description}}</p>
+							<p class="card-text">{{console.price}}
+								€</p>
+						</div>
+						<button type="button" class="btn btn-success">+</button>
+					</div>
+				</div>
+
+			{% endfor %}
+		</div>
+	</div>
 {% endblock %}

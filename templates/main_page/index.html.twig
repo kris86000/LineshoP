@@ -18,74 +18,23 @@
 	</style>
 
 	<div class="container">
-
-
 		<div class="row row-cols-1 row-cols-md-3 g-4">
-  <div class="col-2">
-    <div class="card">
-      <img src="https://www.backmarket.fr/cdn-cgi/image/format=auto,quality=75,width=640/https://d1eh9yux7w8iql.cloudfront.net/product_images/547596_4d3c10eb-eb6b-432a-9446-4feae0dcdf43.jpg" class="card-img-top" alt="...">
-      <div class="card-body">
-        <h5 class="card-title">Card title</h5>
-        <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-      </div>
-	  <button type="button" class="btn btn-success">+</button>
-    </div>
-  </div>
-  <div class="col-2">
-    <div class="card">
-      <img src="https://www.backmarket.fr/cdn-cgi/image/format=auto,quality=75,width=640/https://d1eh9yux7w8iql.cloudfront.net/product_images/547596_4d3c10eb-eb6b-432a-9446-4feae0dcdf43.jpg" class="card-img-top" alt="...">
-      <div class="card-body">
-        <h5 class="card-title">Card title</h5>
-        <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-      </div>
-	  <button type="button" class="btn btn-success">+</button>
-    </div>
-  </div>
-  <div class="col-2">
-    <div class="card">
-      <img src="https://www.backmarket.fr/cdn-cgi/image/format=auto,quality=75,width=640/https://d1eh9yux7w8iql.cloudfront.net/product_images/547596_4d3c10eb-eb6b-432a-9446-4feae0dcdf43.jpg" class="card-img-top" alt="...">
-      <div class="card-body">
-        <h5 class="card-title">Card title</h5>
-        <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content.</p>
-      </div>
-	  <button type="button" class="btn btn-success">+</button>
-    </div>
-  </div>
-  <div class="col-2">
-    <div class="card">
-      <img src="https://www.backmarket.fr/cdn-cgi/image/format=auto,quality=75,width=640/https://d1eh9yux7w8iql.cloudfront.net/product_images/547596_4d3c10eb-eb6b-432a-9446-4feae0dcdf43.jpg" class="card-img-top" alt="...">
-      <div class="card-body">
-        <h5 class="card-title">Card title</h5>
-        <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-      </div>
-	  <button type="button" class="btn btn-success">+</button>
-    </div>
-  </div>
-  
-</div>
-		
-		
-		
-		
-		
-		
-		
-		{# <h1>Hello
-			{{ controller_name }}! ✅</h1>
-		<h1>je deteste symfony</h1>
-		This friendly message is coming from:
-		<ul>
-			<li>Your controller at
-				<code>
-					<a href="{{ 'E:/SYMFONY/Test/src/Controller/MainPageController.php'|file_link(0) }}">src/Controller/MainPageController.php</a>
-				</code>
-			</li>
-			<li>Your template at
-				<code>
-					<a href="{{ 'E:/SYMFONY/Test/templates/main_page/index.html.twig'|file_link(0) }}">templates/main_page/index.html.twig</a>
-				</code>
-			</li>
-		</ul> #}
-	
+			{% for article in allArticles %}
+
+				<div class="col-2">
+					<div class="card">
+						<img src={{article.image}} class="card-img-top" alt="...">
+						<div class="card-body">
+							<h5 class="card-title">{{article.nameArticle}}</h5>
+							<p class="card-text">{{article.description}}</p>
+							<p class="card-text">{{article.price}}
+								€</p>
+						</div>
+						<button type="button" class="btn btn-success">+</button>
+					</div>
+				</div>
+
+			{% endfor %}
+		</div>
 	</div>
 {% endblock %}

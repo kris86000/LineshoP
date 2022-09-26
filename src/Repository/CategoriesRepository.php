@@ -39,6 +39,8 @@ class CategoriesRepository extends ServiceEntityRepository
         }
     }
 
+    // requete pour les Jeux Uniquement //
+
 //    /**
 //     * @return Categories[] Returns an array of Categories objects
 //     */
