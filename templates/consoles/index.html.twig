@@ -24,13 +24,13 @@
 			{% for console in allConsole %}
 
 				<div class="col-2 my-1" >
-					<div class="card h-100 ">
+					<div class="card h-100 pt-2">
 						<img src="{{console.image}}" class="card-img-top" alt="...">
 						<div class="card-body">
 							<h5 class="card-title">{{console.nameArticle}}</h5>
 							<p class="card-text">{{console.description}}</p>
-							<p class="card-text">{{console.price}}
-								€</p>
+							<p class="card-text"><b>{{console.price}}
+								€</b></p>
 						</div>
 						<button type="button" class="btn btn-success">Ajouter au panier</button>
 					</div>
