@@ -18,7 +18,7 @@ class Articles
     #[ORM\Column(length: 80)]
     private ?string $nameArticle = null;
 
-    #[ORM\Column(length: 40)]
+    #[ORM\Column(length: 200)]
     private ?string $image = null;
 
     #[ORM\Column]
