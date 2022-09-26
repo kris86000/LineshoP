@@ -30,7 +30,7 @@
 						<div class="col-8">
 							<div class="row">
 								<p class="col">
-									<a class="navbar-brand col" style="color:white;" href="boutique">LineshoP</a>
+									<a class="navbar-brand col" style="color:white;" href="/">LineshoP</a>
 								</p>
 								<p class="col d-flex align-items-center" style="color:white;">
 									<i>The best online store, for real.</i>
@@ -63,10 +63,20 @@
 {# partie 2 du header #}
 
 <nav class="navbar d-flex justify-content-center" style="background-color: #343a55;">
-	<span class="text-center " style="color:white;">Welcome $_SESSION you can
-		<a href="./login" style="color:green;">login</a>
-		<a href="./logout" style="color:green;">logout</a>
-	</span>
+		<span class="text-center" style="color:white;">Welcome  USER you can
+		<button class="btn btn-success"><a href="./login" style="color:white;">login</a></button>
+		<button class="btn btn-danger"><a href="./logout" style="color:white;">logout</a></button>
+		</span>
+
+{# {% if loggge %}
+		<span class="text-center" style="color:white;">Welcome  USER you can
+		<button class="btn btn-success"><a href="./login" style="color:white;">login</a></button>
+		</span>
+{% else %}
+		<span class="text-center" style="color:white;">Welcome  USER you can
+		<button class="btn btn-danger"><a href="./logout" style="color:white;">logout</a></button>
+		</span>
+{% endif %}	 #}
 </nav>
 
 {# partie 3 du header #}
@@ -74,7 +84,7 @@
 
 <nav class="navbar navbar-expand-lg bg-light mb-2">
 	<div class="d-flex justify-content-start ">
-		<a style="color: black;" class="navbar-brand" href="boutique">All Categories</a>
+		<a style="color: black;" class="navbar-brand" href="/">All Categories</a>
 		<a style="color: black;" class="navbar-brand" href="consoles">Consoles</a>
 		<a style="color: black;" class="navbar-brand" href="jeux">Jeux</a>
 	</div>

@@ -11,7 +11,7 @@ use Symfony\Component\Routing\Annotation\Route;
 class MainPageController extends AbstractController
 {
 
-    #[Route('/boutique', name: 'app_main_page')]
+    #[Route('/', name: 'app_main_page')]
     public function affichageArticle(ManagerRegistry $doctrine): Response
     {
         $allArticles = $doctrine->getRepository(Articles::class)->findAll();
