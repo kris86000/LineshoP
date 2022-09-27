@@ -22,20 +22,25 @@
 			{% for article in allArticles %}
 
 				<div class="col-2 my-1">
-					<div class="card h-100 pt-2"> 
-						<img src="{{article.image}}" class="card-img-top" alt="...">
-						<div class="card-body">
-							<h5 class="card-title">{{article.nameArticle}}</h5>
-							<p class="card-text">{{article.description}}</p>
-							<p class="card-text"><b>{{article.price}}
-								€</b></p>
+					<form action="/add/{{article.id}}" method="post">
+						<div class="card h-100 pt-2">
+							<img src="{{article.image}}" class="card-img-top" alt="...">
+							<div class="card-body">
+								<h5 class="card-title">{{article.nameArticle}}</h5>
+								<p class="card-text">{{article.description}}</p>
+								<p class="card-text">
+									<b>{{article.price}}
+										€</b>
+								</p>
+							</div>
+
+							<button type="submit" id="{{article.id}}" class="btn btn-success">Ajouter au panier</button>
 						</div>
-						<button type="button" class="btn btn-success">Ajouter au panier</button>
-					</div>
+					</form>
 				</div>
+
 
 			{% endfor %}
 		</div>
 	</div>
 {% endblock %}
-

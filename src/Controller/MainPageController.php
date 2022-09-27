@@ -12,13 +12,15 @@ class MainPageController extends AbstractController
 {
 
     #[Route('/', name: 'app_main_page')]
+
     public function affichageArticle(ManagerRegistry $doctrine): Response
     {
         $allArticles = $doctrine->getRepository(Articles::class)->findAll();
 
         return $this->render('main_page/index.html.twig', [
-            'controller_name' => 'MainPageController', 
+            'controller_name' => 'MainPageController',
             'allArticles' => $allArticles
+
         ]);
     }
-}
+};
