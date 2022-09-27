@@ -21,8 +21,8 @@
 		<div class="row row-cols-1 row-cols-md-3 g-4">
 			{% for article in allArticles %}
 
-				<div class="col-2 my-1">
-					<form action="/add/{{article.id}}" method="post">
+				<div class="col-2 my-1 ">
+					<form action="/add/{{article.id}}" method="post" class="h-100">
 						<div class="card h-100 pt-2">
 							<img src="{{article.image}}" class="card-img-top" alt="...">
 							<div class="card-body">
