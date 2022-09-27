@@ -14,7 +14,7 @@ use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
 
 class AjoutPanierController extends AbstractController
 {
-    #[Route('/add/{id}', name: 'app_ajout_panier')]
+    #[Route('/add/{idArticle}', name: 'app_ajout_panier')]
     public function addPanier(ManagerRegistry $doctrine, AuthenticationUtils $authenticationUtils, $idArticle): Response
     {
         // last username entered by the user
@@ -39,6 +39,19 @@ class AjoutPanierController extends AbstractController
                 }
             } else {
                 $order = new Orders;
+                // $dateHeureActuel = date("Y-m-d H:i:s");
+                $dateHeureActuel = new \DateTimeImmutable;
+                $dateHeureActuel->setDate(date('Y'), date('m'), date('d'));
+                $dateHeureActuel->setTime(date('H'), date('i'), date('s'));
+                $dateHeureActuel->format("Y-m-d H:i:s");
+                var_dump($dateHeureActuel);
+                $order->setDateOrder($dateHeureActuel);
+                $order->setAmount('100');
+                $order->setStatus('panier');
+                $order->setUser($user);
+                $entityManager = $doctrine->getManager();
+                $entityManager->getRepository(Orders::class)->add($order);
+                $entityManager->flush();
             }
         } else {
             return $this->redirectToRoute('app_login');
