@@ -25,21 +25,29 @@ class AjoutPanierController extends AbstractController
             //echo $userId;
             $order = $doctrine->getRepository(Orders::class)->findOneBy(['user' => $userId, 'status' => 'panier']);
             if ($order != null) {
-                $orderLine = $doctrine->getRepository(Orderslines::class)->findOneBy(['articles' => $idArticle]);
+                $orderLine = $doctrine->getRepository(Orderslines::class)->findOneBy(['article' => $idArticle]);
                 if ($orderLine != null) {
                     $quantity = $orderLine->getQuantity() + 1;
                     $orderLine->setQuantity($quantity);
                 } else {
+                    $article = $doctrine->getRepository(Articles::class)->find($idArticle);
                     $orderLine = new Orderslines;
                     $orderLine->setArticle($idArticle);
                     $orderLine->setQuantity(1);
                     $orderId = $order->getId();
-                    $orderLine->setOrders($orderId);
+                    $orderLine->setOrders($order);
                     $order->addOrdersline($orderLine);
                 }
             } else {
                 $order = new Orders;
-                // $dateHeureActuel = date("Y-m-d H:i:s");
+
+                $article = $doctrine->getRepository(Articles::class)->find($idArticle);
+                $orderLine = new Orderslines;
+                $orderLine->setArticle($article);
+                $orderLine->setQuantity(1);
+                $orderLine->setOrders($order);
+                $order->addOrdersline($orderLine);
+
                 $dateHeureActuel = new \DateTimeImmutable;
                 $dateHeureActuel->setDate(date('Y'), date('m'), date('d'));
                 $dateHeureActuel->setTime(date('H'), date('i'), date('s'));

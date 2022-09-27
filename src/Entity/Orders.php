@@ -25,7 +25,7 @@ class Orders
     #[ORM\Column(length: 20)]
     private ?string $status = null;
 
-    #[ORM\OneToMany(mappedBy: 'orders', targetEntity: Orderslines::class)]
+    #[ORM\OneToMany(mappedBy: 'orders', targetEntity: Orderslines::class, cascade: ["persist"])]
     private Collection $orderslines;
 
     #[ORM\ManyToOne(inversedBy: 'orders')]
