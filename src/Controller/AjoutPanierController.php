@@ -23,21 +23,31 @@ class AjoutPanierController extends AbstractController
             $user = $doctrine->getRepository(User::class)->findOneBy(['email' => $lastUsername]);
             $userId = $user->getId();
             //echo $userId;
-            $order = $doctrine->getRepository(Orders::class)->findOneBy(['user' => $userId, 'status' => 'panier']);
+            $entityManager = $doctrine->getManager();
+            $order = $entityManager->getRepository(Orders::class)->findOneBy(['user' => $userId, 'status' => 'panier']);
             if ($order != null) {
-                $orderLine = $doctrine->getRepository(Orderslines::class)->findOneBy(['article' => $idArticle]);
-                if ($orderLine != null) {
-                    $quantity = $orderLine->getQuantity() + 1;
-                    $orderLine->setQuantity($quantity);
-                } else {
+                $thisOrderLine = null;
+                foreach ($order->getOrderslines() as $orderLine) {
+                    if ($orderLine->getArticle()->getId() == $idArticle) {
+                        $quantity = $orderLine->getQuantity() + 1;
+                        $orderLine->setQuantity($quantity);
+                        $amount = $order->getAmount() + $orderLine->getArticle()->getPrice();
+                        $order->setAmount($amount);
+                        $thisOrderLine = $orderLine;
+                        break;
+                    }
+                }
+                if ($thisOrderLine == null) {
                     $article = $doctrine->getRepository(Articles::class)->find($idArticle);
                     $orderLine = new Orderslines;
-                    $orderLine->setArticle($idArticle);
+                    $orderLine->setArticle($article);
                     $orderLine->setQuantity(1);
-                    $orderId = $order->getId();
                     $orderLine->setOrders($order);
+                    $amount = $order->getAmount() + $article->getPrice();
+                    $order->setAmount($amount);
                     $order->addOrdersline($orderLine);
                 }
+                $entityManager->flush();
             } else {
                 $order = new Orders;
 
@@ -54,13 +64,14 @@ class AjoutPanierController extends AbstractController
                 $dateHeureActuel->format("Y-m-d H:i:s");
                 var_dump($dateHeureActuel);
                 $order->setDateOrder($dateHeureActuel);
-                $order->setAmount('100');
+                $order->setAmount($article->getPrice());
                 $order->setStatus('panier');
                 $order->setUser($user);
                 $entityManager = $doctrine->getManager();
                 $entityManager->getRepository(Orders::class)->add($order);
                 $entityManager->flush();
             }
+            return $this->redirectToRoute('app_main_page');
         } else {
             return $this->redirectToRoute('app_login');
         }
