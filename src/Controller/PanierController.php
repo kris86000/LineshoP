@@ -7,6 +7,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Doctrine\Persistence\ManagerRegistry;
 use App\Entity\Orders;
+use App\Entity\User;
 use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
 
 class PanierController extends AbstractController
@@ -19,6 +20,7 @@ class PanierController extends AbstractController
             $user = $doctrine->getRepository(User::class)->findOneBy(['email' => $lastUsername]);
             $userId = $user->getId();
             $order = $doctrine->getRepository(Orders::class)->findOneBy(['user' => $userId, 'status' => 'panier']);
+            var_dump($userId);
         } else {
             return $this->redirectToRoute('app_login');
         }
