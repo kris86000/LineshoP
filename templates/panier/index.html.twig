@@ -39,16 +39,18 @@
 					</thead>
 					<tbody>
 						{% for orderline in order.orderslines %}
+							{% set index = index + 1 %}
 							<tr>
-								<th scope="row">1</th>
+								<th scope="row">{{index}}</th>
 								<td class="text-center"><img style="max-height: 100px;" src="{{orderline.article.image}}"></td>
 								<td class="text-center" style="color:green;">{{orderline.article.nameArticle}}</td>
 								<td class="text-center" style="color:green;">{{orderline.article.price}}€</td>
 								<td class="text-center"><input type"number" value="{{orderline.quantity}}" class="text-center w-25"/></td>
 								<td class="text-center" style="color:green;">{{((orderline.article.price * (20 / 100)) + orderline.article.price) * orderline.quantity}}€</td>
 								<td class="text-center">
-
-									<button type="button" class="btn btn-secondary btn-sm bi bi-trash"></button>
+									<form>
+										<button type="button" class="btn btn-secondary btn-sm bi bi-trash"></button>
+									</form>
 								</td>
 							</tr>
 						{% endfor %}

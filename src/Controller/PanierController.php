@@ -21,6 +21,7 @@ class PanierController extends AbstractController
             $userId = $user->getId();
             $order = $doctrine->getRepository(Orders::class)->findOneBy(['user' => $userId, 'status' => 'panier']);
             var_dump($order->getId());
+            $index = 0;
         } else {
             return $this->redirectToRoute('app_login');
         }
@@ -29,7 +30,7 @@ class PanierController extends AbstractController
 
 
         return $this->render('panier/index.html.twig', [
-            'controller_name' => 'PanierController', 'order' => $order
+            'controller_name' => 'PanierController', 'order' => $order, 'index' => $index
         ]);
     }
 }
