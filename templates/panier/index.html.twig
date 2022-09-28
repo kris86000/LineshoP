@@ -38,15 +38,16 @@
 						</tr>
 					</thead>
 					<tbody>
-						{% for orderline in order %}
+						{% for orderline in order.orderslines %}
 							<tr>
 								<th scope="row">1</th>
-								<td class="text-center"><img style="max-height: 100px;" src="{{order.article.image}}"></td>
-								<td class="text-center" style="color:green;">PS4</td>
-								<td class="text-center" style="color:green;">98,00€</td>
-								<td class="text-center"><input type"number" value="1" class="text-center w-25"/></td>
-								<td class="text-center" style="color:green;">98,00€</td>
+								<td class="text-center"><img style="max-height: 100px;" src="{{orderline.article.image}}"></td>
+								<td class="text-center" style="color:green;">{{orderline.article.nameArticle}}</td>
+								<td class="text-center" style="color:green;">{{orderline.article.price}}€</td>
+								<td class="text-center"><input type"number" value="{{orderline.quantity}}" class="text-center w-25"/></td>
+								<td class="text-center" style="color:green;">{{((orderline.article.price * (20 / 100)) + orderline.article.price) * orderline.quantity}}€</td>
 								<td class="text-center">
+
 									<button type="button" class="btn btn-secondary btn-sm bi bi-trash"></button>
 								</td>
 							</tr>
@@ -59,7 +60,7 @@
 
 		<div class="row">
 			<div class="col-1 offset-10 mb-4">Grand total:</div>
-			<div class="col-1">849€</div>
+			<div class="col-1">{{order.amount +  order.amount * 0.20 }}€</div>
 			<button class=" offset-11 btn btn-success">Recalculer</button>
 		</div>
 	</div>
