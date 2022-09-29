@@ -9,9 +9,19 @@ use Doctrine\Persistence\ManagerRegistry;
 use App\Entity\Orders;
 use App\Entity\User;
 use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
+use Symfony\Component\HttpFoundation\RequestStack;
 
 class PanierController extends AbstractController
 {
+    private $requestStack;
+    public function __construct(RequestStack $requestStack)
+    {
+        $this->requestStack = $requestStack;
+
+        // Accessing the session in the constructor is *NOT* recommended, since
+        // it might not be accessible yet or lead to unwanted side-effects
+        // $this->session = $requestStack->getSession();
+    }
     #[Route('/cart', name: 'app_panier')]
     public function panier(ManagerRegistry $doctrine, AuthenticationUtils $authenticationUtils): Response
     {
@@ -33,6 +43,7 @@ class PanierController extends AbstractController
     #[Route('/cart/{id}', name: 'app_delete_panier')]
     public function deletePanier(ManagerRegistry $doctrine, AuthenticationUtils $authenticationUtils, $id): Response
     {
+
         $lastUsername = $authenticationUtils->getLastUsername();
         if ($lastUsername != null) {
             $user = $doctrine->getRepository(User::class)->findOneBy(['email' => $lastUsername]);
@@ -41,7 +52,7 @@ class PanierController extends AbstractController
             $entityManager = $doctrine->getManager();
             foreach ($order->getOrderslines() as $orderline) {
                 if ($orderline->getId() == $id) {
-                    $amount = $order->getAmount() - $orderline->getArticle()->getPrice();
+                    $amount = $order->getAmount() - ($orderline->getArticle()->getPrice() * $orderline->getQuantity());
                     $order->setAmount($amount);
                     $order->removeOrdersline($orderline);
                     $entityManager->flush();
@@ -52,7 +63,23 @@ class PanierController extends AbstractController
         } else {
             return $this->redirectToRoute('app_login');
         }
-
+        $session = $this->requestStack->getSession();
+        $amount = 0;
+        $quantity = 0;
+        $lastUsername = $authenticationUtils->getLastUsername();
+        if ($lastUsername != null) {
+            $user = $doctrine->getRepository(User::class)->findOneBy(['email' => $lastUsername]);
+            $userId = $user->getId();
+            $order = $doctrine->getRepository(Orders::class)->findOneBy(['user' => $userId, 'status' => 'panier']);
+            if ($order != null) {
+                $amount = $order->getAmount();
+                foreach ($order->getOrdersLines() as $orderline) {
+                    $quantity = $quantity + $orderline->getQuantity();
+                }
+            }
+        }
+        $session->set('amount', $amount);
+        $session->set('quantity', $quantity);
         return $this->render('panier/index.html.twig', [
             'controller_name' => 'PanierController', 'order' => $order, 'index' => $index
         ]);

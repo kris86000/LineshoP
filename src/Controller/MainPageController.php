@@ -28,6 +28,8 @@ class MainPageController extends AbstractController
     public function affichageArticle(ManagerRegistry $doctrine, AuthenticationUtils $authenticationUtils): Response
     {
         $session = $this->requestStack->getSession();
+        $amount = 0;
+        $quantity = 0;
         $allArticles = $doctrine->getRepository(Articles::class)->findAll();
         $lastUsername = $authenticationUtils->getLastUsername();
 
