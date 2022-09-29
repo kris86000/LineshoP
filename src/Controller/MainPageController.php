@@ -34,22 +34,18 @@ class MainPageController extends AbstractController
         if ($lastUsername == null) {
             $amount = 0;
             $quantity = 0;
+        } else {
             $user = $doctrine->getRepository(User::class)->findOneBy(['email' => $lastUsername]);
             $userId = $user->getId();
             $order = $doctrine->getRepository(Orders::class)->findOneBy(['user' => $userId, 'status' => 'panier']);
+
             if ($order != null) {
                 $amount = $order->getAmount();
                 $quantity = 0;
                 foreach ($order->getOrdersLines() as $orderline) {
                     $quantity = $quantity + $orderline->getQuantity();
                 }
-            } else {
-                $amount = 0;
-                $quantity = 0;
             }
-        } else {
-            $amount = 0;
-            $quantity = 0;
         }
         $session->set('amount', $amount);
         $session->set('quantity', $quantity);
