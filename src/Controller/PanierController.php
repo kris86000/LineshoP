@@ -20,7 +20,6 @@ class PanierController extends AbstractController
             $user = $doctrine->getRepository(User::class)->findOneBy(['email' => $lastUsername]);
             $userId = $user->getId();
             $order = $doctrine->getRepository(Orders::class)->findOneBy(['user' => $userId, 'status' => 'panier']);
-            var_dump($order->getId());
             $index = 0;
         } else {
             return $this->redirectToRoute('app_login');

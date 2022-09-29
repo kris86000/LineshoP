@@ -50,8 +50,10 @@
 						<div class="row text-center">
 							{% if app.user != null %}
 								{% if app.session is defined %}
-									<p class="col" style="color:white;">{{app.session.quantity}}</p>
-									<p class="col" style="color:white;">{{app.session.amount}}</p>
+									<p class="col" style="color:white;">{{ app.session.get('quantity') }}</p>
+									<p class="col" style="color:white;">{{ app.session.get('amount') + (app.session.get('amount') * 0.20) }}
+										€
+									</p>
 								{% endif %}
 							{% endif %}
 						</div>

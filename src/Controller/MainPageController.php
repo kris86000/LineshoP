@@ -4,7 +4,6 @@ namespace App\Controller;
 
 use App\Entity\Articles;
 use Doctrine\Persistence\ManagerRegistry;
-use App\Entity\PanierService;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -12,17 +11,28 @@ use Symfony\Component\HttpFoundation\RequestStack;
 use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
 use App\Entity\User;
 use App\Entity\Orders;
-use Symfony\Component\HttpFoundation\Session\Session;
+
 
 class MainPageController extends AbstractController
 {
+    
 
+    private $requestStack;
+
+    public function __construct(RequestStack $requestStack)
+    {
+        $this->requestStack = $requestStack;
+
+        // Accessing the session in the constructor is *NOT* recommended, since
+        // it might not be accessible yet or lead to unwanted side-effects
+        // $this->session = $requestStack->getSession();
+    }
     #[Route('/', name: 'app_main_page')]
+
 
     public function affichageArticle(ManagerRegistry $doctrine, AuthenticationUtils $authenticationUtils): Response
     {
-        $session = new Session();
-        $session->start();
+        $session = $this->requestStack->getSession();
         $allArticles = $doctrine->getRepository(Articles::class)->findAll();
         $amount = 0;
         $quantity = 0;
@@ -38,9 +48,8 @@ class MainPageController extends AbstractController
                 }
             }
         }
-        $request = new RequestStack;
-        $servicePanier = new PanierService($request);
-        $servicePanier->majPanier($amount, $quantity);
+        $session->set('amount', $amount);
+        $session->set('quantity', $quantity);
         return $this->render('main_page/index.html.twig', [
             'controller_name' => 'MainPageController',
             'allArticles' => $allArticles
