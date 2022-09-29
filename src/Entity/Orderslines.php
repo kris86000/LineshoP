@@ -17,7 +17,7 @@ class Orderslines
     private ?int $quantity = null;
 
     #[ORM\ManyToOne(inversedBy: 'orderslines')]
-    #[ORM\JoinColumn(nullable: false)]
+    #[ORM\JoinColumn(onDelete: "CASCADE")]
     private ?orders $orders = null;
 
     #[ORM\ManyToOne(inversedBy: 'orderslines')]
