@@ -15,7 +15,7 @@ use App\Entity\Orders;
 
 class MainPageController extends AbstractController
 {
-    
+
 
     private $requestStack;
 
@@ -53,7 +53,6 @@ class MainPageController extends AbstractController
         return $this->render('main_page/index.html.twig', [
             'controller_name' => 'MainPageController',
             'allArticles' => $allArticles
-
         ]);
     }
 };
