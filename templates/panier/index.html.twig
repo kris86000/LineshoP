@@ -41,16 +41,21 @@
 						{% for orderline in order.orderslines %}
 							{% set index = index + 1 %}
 							<tr>
-								<form action="/cart/{{orderline.id}}" method="post">
+								<form action="" method="post">
 									<th scope="row">{{index}}</th>
 									<td class="text-center"><img style="max-height: 100px;" src="{{orderline.article.image}}"></td>
 									<td class="text-center" style="color:green;">{{orderline.article.nameArticle}}</td>
 									<td class="text-center" style="color:green;">{{orderline.article.price}}€</td>
-									<td class="text-center"><input type"number" value="{{orderline.quantity}}" class="text-center w-25"/></td>
+									<td class="text-center">
+										<button formaction="/cart/update/minus/{{orderline.id}}" type="submit" class="btn btn-secondary btn-sm bi bi-dash-lg"></button>
+										<input type"number" readonly disabled value="{{orderline.quantity}}" name="quantity" class="text-center w-25"/>
+										<button formaction="/cart/update/plus/{{orderline.id}}" type="submit" class="btn btn-secondary btn-sm bi bi bi-plus-lg"></button>
+									</td>
 									<td class="text-center" style="color:green;">{{((orderline.article.price * (20 / 100)) + orderline.article.price) * orderline.quantity}}€</td>
 									<td class="text-center" hidden><input type"text" value="{{orderline.id}}" class="text-center w-25"/></td>
+
 									<td class="text-center">
-										<button type="submit" class="btn btn-secondary btn-sm bi bi-trash"></button>
+										<button formaction="/cart/{{orderline.id}}" type="submit" class="btn btn-secondary btn-sm bi bi-trash"></button>
 									</td>
 								</form>
 							</tr>
@@ -63,7 +68,7 @@
 		<div class="row">
 			<div class="col-1 offset-10 mb-4">Grand total:</div>
 			<div class="col-1">{{order.amount +  order.amount * 0.20 }}€</div>
-			<button class=" offset-11 btn btn-success">Recalculer</button>
+			<button hidden class=" offset-11 btn btn-success">Recalculer</button>
 		</div>
 	</div>
 {% endblock %}
